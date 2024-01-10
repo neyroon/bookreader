@@ -6,7 +6,7 @@ export const ResetStyle = styled.createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', serif;
+    font-family: 'Oswald', serif;
   }
 
   a {

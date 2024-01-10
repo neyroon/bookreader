@@ -1,5 +1,7 @@
+import { Upload } from './components/upload';
+
 function App() {
-  return <></>;
+  return <Upload />;
 }
 
 export default App;
