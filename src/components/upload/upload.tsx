@@ -1,12 +1,15 @@
-import { ChangeEvent, DragEvent, useState } from 'react';
+import { ChangeEvent, DragEvent, useRef, useState } from 'react';
+
 import { FILE_INPUT_ID } from './constants';
-import { Box, DropArea, StyledInput, StyledLabel } from './upload.styles';
+import { Box, Cross, DropArea, FileName, FileNameContainer, StyledInput, StyledLabel } from './upload.styles';
 
 export const Upload = () => {
   const [highlite, setHighlite] = useState(false);
+  const [fileName, setFileName] = useState('');
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleFile = (files: FileList) => {
-    alert('Number of files: ' + files.length);
+    setFileName(files[0].name);
   };
 
   const handleDragEnter = (e: DragEvent<HTMLDivElement>) => {
@@ -36,11 +39,16 @@ export const Upload = () => {
     }
   };
 
-  const handleChange = function (e: ChangeEvent<HTMLInputElement>) {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     if (e?.target?.files) {
       handleFile(e?.target?.files);
     }
+  };
+
+  const handleCrossClick = () => {
+    setFileName('');
+    if (inputRef.current) inputRef.current.value = '';
   };
 
   return (
@@ -54,7 +62,13 @@ export const Upload = () => {
         $highlite={highlite}
       >
         <StyledLabel htmlFor={FILE_INPUT_ID}>Выбрать файл</StyledLabel>
-        <StyledInput type="file" id={FILE_INPUT_ID} />
+        <StyledInput type="file" id={FILE_INPUT_ID} ref={inputRef} accept='.fb2'/>
+        {fileName && (
+          <FileNameContainer>
+            <FileName>{fileName}</FileName>
+            <Cross onClick={handleCrossClick} />
+          </FileNameContainer>
+        )}
       </DropArea>
     </Box>
   );
