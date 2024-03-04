@@ -1,0 +1,15 @@
+export { BookIcon } from './bookIcon';
+export { TableOfContentsIcon } from './tableOfContentsIcon';
+export { FontIcon } from './fontIcon';
+export { FullScreenIcon } from './fullScreenIcon';
+export { ExitFullScreenIcon } from './exitFullScreenIcon';
+export { AboutIcon } from './aboutIcon';
+export { LeftArrowIcon } from './leftArrowIcon';
+export { RightArrowIcon } from './rightArrowIcon';
+export { AlignLeftIcon } from './alignLeftIcon';
+export { AlignJustifyIcon } from './alignJustifyIcon';
+export { MinLineHeightIcon } from './minLineHeightIcon';
+export { IntermediateLineHeightIcon } from './intermediateLineHeightIcon';
+export { MaxLineHeightIcon } from './maxLineHeightIcon';
+export { FontSizeIcon } from './fontSizeIcon';
+export { CloseIcon } from './closeIcon';
