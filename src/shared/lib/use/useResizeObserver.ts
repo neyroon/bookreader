@@ -1,19 +1,11 @@
 import { useLayoutEffect, useRef } from 'react';
+import { debounce } from '../utils/debounce';
 
-export function useResizeObserver<T extends HTMLElement>(callback: (target: T, entry: ResizeObserverEntry) => void) {
+export function useResizeObserver<T extends HTMLElement>(
+  cb: (entry: ResizeObserverEntry, target: T) => void,
+  waitFor: number = 500,
+) {
   const ref = useRef<T>(null);
-
-  const debounce = () => {
-    let timer: ReturnType<typeof setTimeout> | undefined;
-
-    return function (...args: Parameters<typeof callback>) {
-      clearTimeout(timer);
-
-      timer = setTimeout(() => {
-        callback(...args);
-      }, 500);
-    };
-  };
 
   useLayoutEffect(() => {
     const element = ref?.current;
@@ -22,15 +14,15 @@ export function useResizeObserver<T extends HTMLElement>(callback: (target: T, e
       return;
     }
 
-    const debouncedCallback = debounce();
+    const debouncedCallback = debounce(cb, waitFor);
 
-    const observer = new ResizeObserver((entries) => debouncedCallback(element, entries[0]));
+    const observer = new ResizeObserver((entries) => debouncedCallback(entries[0], element));
 
     observer.observe(element);
     return () => {
       observer.disconnect();
     };
-  }, [callback, ref]);
+  }, [cb, waitFor]);
 
   return ref;
 }

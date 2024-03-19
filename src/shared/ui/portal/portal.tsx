@@ -1,4 +1,4 @@
-import { FC, ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { PORTAL_ERROR_MSG } from './constants';
 
@@ -7,7 +7,7 @@ export interface PortalProps {
   children: ReactNode;
 }
 
-export const Portal: FC<PortalProps> = ({ id, children }) => {
+export const Portal = ({ id, children }: PortalProps) => {
   const [container, setContainer] = useState<HTMLElement>();
 
   useEffect(() => {

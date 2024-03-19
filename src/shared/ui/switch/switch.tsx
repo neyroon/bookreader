@@ -1,4 +1,4 @@
-import { FC, useId, useState } from 'react';
+import { useId, useState } from 'react';
 import { Circle, Input, Label } from './switch.styles';
 
 export interface SwitchProps {
@@ -6,7 +6,7 @@ export interface SwitchProps {
   onChange?: (checked: boolean) => void;
 }
 
-export const Switch: FC<SwitchProps> = ({ checked = false, onChange }) => {
+export const Switch = ({ checked = false, onChange }: SwitchProps) => {
   const id = useId();
   const [isChecked, setIsChecked] = useState(checked);
 

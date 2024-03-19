@@ -1,8 +1,6 @@
-import { FC } from 'react';
-
 import { IconProps } from './types';
 
-export const AlignJustifyIcon: FC<IconProps> = ({ className }) => (
+export const AlignJustifyIcon = ({ className }: IconProps) => (
   <svg
     width="24px"
     height="24px"

@@ -29,14 +29,6 @@ export const ReaderSlice = createSlice({
       state.bookTitle = action.payload;
     },
   },
-  selectors: {
-    selectSections: (state) => state.sections,
-    selectCurrentSection: (state) => state.currentSection,
-    selectTotalSections: (state) => state.totalSections,
-    selectBookTitle: (state) => state.bookTitle,
-  },
 });
 
 export const { decSection, incSection, setCurrentSection, setSections } = ReaderSlice.actions;
-
-export const { selectCurrentSection, selectTotalSections, selectBookTitle, selectSections } = ReaderSlice.selectors;

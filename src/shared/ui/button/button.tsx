@@ -1,4 +1,4 @@
-import { ComponentProps, FC, ReactNode } from 'react';
+import { ComponentProps, ReactNode } from 'react';
 
 import { Box } from './button.styles';
 
@@ -6,6 +6,6 @@ export interface ButtonProps extends ComponentProps<'button'> {
   children: ReactNode;
 }
 
-export const Button: FC<ButtonProps> = ({ children, ...props }) => {
+export const Button = ({ children, ...props }: ButtonProps) => {
   return <Box {...props}>{children}</Box>;
 };

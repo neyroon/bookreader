@@ -1,7 +1,6 @@
-import { FC } from 'react';
 import { IconProps } from './types';
 
-export const AboutIcon: FC<IconProps> = ({ className }) => (
+export const AboutIcon = ({ className }: IconProps) => (
   <svg
     width={40}
     height={40}

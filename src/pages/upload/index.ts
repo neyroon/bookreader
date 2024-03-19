@@ -1,1 +1,1 @@
-export { UploadPage } from './upload';
+export { UploadPage } from './ui/upload';

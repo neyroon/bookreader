@@ -1,4 +1,7 @@
-import { containerOptions } from './types';
+export interface containerOptions {
+  id: string;
+  mountNode?: HTMLElement;
+}
 
 export const createPortalContainer = (options: containerOptions) => {
   if (document.getElementById(options.id)) {

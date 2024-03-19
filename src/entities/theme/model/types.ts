@@ -11,7 +11,9 @@ export interface IBaseTheme {
   };
 }
 
-export enum Themes {
-  LIGHT = 'LIGHT',
-  DARK = 'DARK',
-}
+export const Themes = {
+  LIGHT: 'LIGHT',
+  DARK: 'DARK',
+} as const;
+
+export type Themes = (typeof Themes)[keyof typeof Themes];

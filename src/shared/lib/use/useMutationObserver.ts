@@ -1,20 +1,22 @@
 import { RefObject, useEffect } from 'react';
 
+const defaultOptions: MutationObserverInit = {
+  attributes: false,
+  characterData: false,
+  childList: true,
+  subtree: true,
+};
+
 export const useMutationObserver = <T extends HTMLElement>(
   ref: RefObject<T>,
   callback: MutationCallback,
-  options: MutationObserverInit = {
-    attributes: false,
-    characterData: false,
-    childList: true,
-    subtree: true,
-  },
+  options: MutationObserverInit = defaultOptions,
 ) => {
   useEffect(() => {
-    if (ref.current) {
-      const observer = new MutationObserver(callback);
-      observer.observe(ref.current, options);
-      return () => observer.disconnect();
-    }
-  }, []);
+    const observer = new MutationObserver(callback);
+
+    ref.current && observer.observe(ref.current, options);
+
+    return () => observer.disconnect();
+  }, [ref, callback, options]);
 };

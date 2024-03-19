@@ -1,22 +1,18 @@
 import styled from 'styled-components';
-import { FontFamily, FontSize, Hyphens, LineHeight, TextAlign } from '@/features/settingsButton/model';
+import { FontState } from '@/features/settingsButton/model/types';
 
 export const ReaderContent = styled.div<{
   $columnWidth: number;
-  $fontFamily: FontFamily;
-  $textAlign: TextAlign;
-  $hyphens: Hyphens;
-  $lineHeight: LineHeight;
-  $fontSize: FontSize;
+  $fontStore: FontState;
   $translate: number;
 }>`
   transform: translate3d(${({ $translate }) => `-${$translate}`}px, 0px, 0px);
-  font-family: ${({ $fontFamily }) => $fontFamily}, serif;
-  text-align: ${({ $textAlign }) => $textAlign};
-  hyphens: ${({ $hyphens }) => $hyphens};
+  font-family: ${({ $fontStore }) => $fontStore.fontFamily}, serif;
+  text-align: ${({ $fontStore }) => $fontStore.textAlign};
+  hyphens: ${({ $fontStore }) => $fontStore.hyphens};
+  line-height: ${({ $fontStore }) => $fontStore.lineHeight};
+  font-size: ${({ $fontStore }) => $fontStore.fontSize}px;
   column-width: ${({ $columnWidth }) => $columnWidth}px;
-  line-height: ${({ $lineHeight }) => $lineHeight};
-  font-size: ${({ $fontSize }) => $fontSize}px;
   padding-top: 20px;
   z-index: 3;
   background: transparent;

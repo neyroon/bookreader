@@ -1,6 +1,6 @@
 import { useKeyPress, useOutsideClick } from '@/shared/lib/use';
 import { createPortalContainer } from '@/shared/lib/utils';
-import { FC, ReactNode, useEffect, useRef, useState } from 'react';
+import { ReactNode, useEffect, useRef, useState } from 'react';
 
 import { Portal } from '../portal';
 import { Typography } from '../typography';
@@ -13,7 +13,7 @@ export interface ModalProps {
   children: ReactNode;
 }
 
-export const Modal: FC<ModalProps> = ({ title, onClose, children }) => {
+export const Modal = ({ title, onClose, children }: ModalProps) => {
   const rootRef = useRef<HTMLDivElement>(null);
   const [isMounted, setMounted] = useState(false);
 

@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { Suspense, lazy, useRef } from 'react';
 
 import { Box, Footer, FooterContainer, Main } from './book.styles';
 
@@ -6,9 +6,10 @@ import { FullScreenButton } from '@/features/fullScreenButton';
 import { SettingsButton } from '@/features/settingsButton/ui';
 import { TableOfContentsButton } from '@/features/tableOfContentsButton';
 import { Header } from '@/widgets/header';
-import { Reader } from '@/widgets/reader';
 import { useParser } from '@/shared/lib/use';
 import { OTagNames } from '@/shared/lib/parser';
+
+const Reader = lazy(() => import('@/widgets/reader'));
 
 export const BookPage = ({ unparsedText }: { unparsedText: string }) => {
   const parsedBookContent = useParser(unparsedText);
@@ -22,7 +23,11 @@ export const BookPage = ({ unparsedText }: { unparsedText: string }) => {
         <FullScreenButton ref={containerRef} />
         <SettingsButton />
       </Header>
-      <Main><Reader parsedBookContent={parsedBookContent[0]} /></Main>
+      <Main>
+        <Suspense fallback={<>Loading...</>}>
+          <Reader parsedBookContent={parsedBookContent[0]} />
+        </Suspense>
+      </Main>
       <FooterContainer>
         <Footer></Footer>
       </FooterContainer>

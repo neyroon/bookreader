@@ -1,1 +1,1 @@
-export { TableOfContentsButton } from './tableOfContentsButton';
+export { TableOfContentsButton } from './ui/tableOfContentsButton';

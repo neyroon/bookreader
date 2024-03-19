@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { IBaseTheme, Themes } from './types';
 
-const BaseTheme: IBaseTheme = {
+const LightTheme: IBaseTheme = {
   type: Themes.LIGHT,
   colors: {
     primary: '#f2f1f1;',
@@ -15,14 +15,10 @@ const BaseTheme: IBaseTheme = {
   },
 };
 
-export const LightTheme: IBaseTheme = {
-  ...BaseTheme,
-};
-
 export const DarkTheme: IBaseTheme = {
   type: Themes.DARK,
   colors: {
-    ...BaseTheme.colors,
+    ...LightTheme.colors,
     primary: '#202022',
     tertiary: '#504e4e',
     bg: '#171717',
@@ -35,10 +31,8 @@ export const ThemeSlice = createSlice({
   initialState: LightTheme,
   reducers: {
     setTheme: (state, action: PayloadAction<Themes>) => {
-      state.type =
-        action.payload === Themes.LIGHT ? LightTheme.type : DarkTheme.type;
-      state.colors =
-        action.payload === Themes.LIGHT ? LightTheme.colors : DarkTheme.colors;
+      const newTheme = action.payload === Themes.LIGHT ? LightTheme : DarkTheme;
+      return { ...state, ...newTheme };
     },
   },
   selectors: {

@@ -1,1 +1,1 @@
-export { ReaderPagination } from './readerPagination';
+export { ReaderPagination } from './ui/readerPagination';

@@ -1,1 +1,2 @@
-export { Reader } from './reader';
+
+export {Reader as default} from './ui/reader';

@@ -131,9 +131,3 @@ export const getSectionParagraphs = (section: ParsedXML): ContentSectionMarkup[]
 
   return content;
 };
-
-export const getSectionId = () => {
-  let id = 0;
-
-  return () => id++;
-};

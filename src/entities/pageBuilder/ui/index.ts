@@ -1,1 +1,1 @@
-export { PageBuilder } from './pageBuilder';
+export { SectionsBuilder } from './pageBuilder';

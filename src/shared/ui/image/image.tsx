@@ -1,9 +1,9 @@
-import { ComponentPropsWithoutRef, FC } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 
 import { ImageBox } from './image.styles';
 
 export interface ImageProps extends ComponentPropsWithoutRef<'img'> {}
 
-export const Image: FC<ImageProps> = ({ ...props }) => {
+export const Image = ({ ...props }: ImageProps) => {
   return <ImageBox {...props} />;
 };

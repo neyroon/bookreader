@@ -1,7 +1,6 @@
-import { FC } from 'react';
 import { IconProps } from './types';
 
-export const LeftArrowIcon: FC<IconProps> = ({ className }) => (
+export const LeftArrowIcon = ({ className }: IconProps) => (
   <svg
     width={80}
     height={80}

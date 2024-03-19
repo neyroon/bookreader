@@ -1,1 +1,1 @@
-export { FullScreenButton } from './fullScreenButton';
+export { FullScreenButton } from './ui/fullScreenButton';

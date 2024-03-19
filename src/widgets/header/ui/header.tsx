@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 import { BookIconContainer, Box, ButtonsContainer, Navigation, StyledBookIcon, Title } from './header.styles';
 
@@ -7,7 +7,7 @@ export interface HeaderProps {
   children: ReactNode;
 }
 
-export const Header: FC<HeaderProps> = ({ title = '', children }) => {
+export const Header = ({ title = '', children }: HeaderProps) => {
   return (
     <Box>
       <Navigation>

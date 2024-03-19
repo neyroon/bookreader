@@ -1,31 +1,32 @@
 import { OTagNames, ParsedXML } from '@/shared/lib/parser';
 
 import { Section } from '../model/types';
-import { getBookInfo, getCoverpagesSrc, getSectionId, getSectionParagraphs, getSectionTitles } from './utils';
+import { getBookInfo, getCoverpagesSrc, getSectionParagraphs, getSectionTitles } from './utils';
+import { nanoid } from 'nanoid';
 
-const buildCoverpageSection = (parsedBookContent: ParsedXML, sections: Section[], sectionId: () => number) => {
+const buildCoverpageSection = (parsedBookContent: ParsedXML, sections: Section[], sectionId: string) => {
   const sources = getCoverpagesSrc(parsedBookContent);
 
   sections.push({
-    id: sectionId(),
+    id: sectionId,
     markup: sources,
   });
 };
 
-const buildBookInfoSection = (parsedBookContent: ParsedXML, sections: Section[], sectionId: () => number) => {
+const buildBookInfoSection = (parsedBookContent: ParsedXML, sections: Section[], sectionId: string) => {
   const bookInfo = getBookInfo(parsedBookContent);
 
   sections.push({
-    id: sectionId(),
+    id: sectionId,
     markup: bookInfo,
   });
 };
 
-const getSectionInfo = (xml: ParsedXML, sectionId: () => number) => {
+const getSectionInfo = (xml: ParsedXML, sectionId: string) => {
   const titles = getSectionTitles(xml);
   const paragraphs = getSectionParagraphs(xml);
   const section: Section = {
-    id: sectionId(),
+    id: sectionId,
     title: titles[0]?.value,
     markup: [...titles, ...paragraphs],
   };
@@ -33,7 +34,7 @@ const getSectionInfo = (xml: ParsedXML, sectionId: () => number) => {
   return section;
 };
 
-const buildContentSections = (parsedBookContent: ParsedXML, sections: Section[], sectionId: () => number) => {
+const buildContentSections = (parsedBookContent: ParsedXML, sections: Section[], sectionId: string) => {
   const sectionElements = parsedBookContent.getAllElements(OTagNames.SECTION);
 
   let i = 0;
@@ -67,7 +68,7 @@ const buildContentSections = (parsedBookContent: ParsedXML, sections: Section[],
 
 export const buildSections = (parsedBookContent: ParsedXML): Section[] => {
   const sections: Section[] = [];
-  const sectionId = getSectionId();
+  const sectionId = nanoid(10);
 
   buildCoverpageSection(parsedBookContent, sections, sectionId);
 
